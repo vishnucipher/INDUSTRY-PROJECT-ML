@@ -1,7 +1,6 @@
 import sys
-import logging
-import logger
 
+#from logger import logging
 def error_message_details(error,error_detail:sys):
     _,_,exc_tb = error_detail.exc_info()  ## exc_tb == traceback i will store on which line number the exception is occurs.... whic file 
     
@@ -15,10 +14,17 @@ def error_message_details(error,error_detail:sys):
 
 class CustomException(Exception):
     def __init__(self,error_message,error_detail:sys):
-        super().__init__()   ## Initialize the parent Excepting class
+        super().__init__()   # Initialize the parent Excepting class
         self.error_message = error_message_details(error_message,error_detail=error_detail)
     
     def __str__(self):  # This method return the detailed error message when the exceptin is printed or converted to a string
         return self.error_message
 
 
+'''
+if __name__ == "__main__":
+    try:
+        a = 1/0
+    except Exception as e:
+        logging.info('Zero Division Error')
+        raise CustomException(e,sys)'''
